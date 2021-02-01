@@ -1,23 +1,30 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
-// const path = require("path");
+const path = require("path");
 
+app.use(express.urlencoded({ extended: true}))
+app.use(express.json())
 
+// app.get('/', (req, res) => {
+//     res.send('You connected')
+// })
 
-app.get('/', (req, resp) => {
-    res.send(path.join(__dirname + '/public/index.html'))
+//GET /notes - Should return the notes.html file.
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname + '/public/notes.html'))
+})
+// GET * - Should return the index.html file
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname + '/public/index.html'))
 })
 
-app.get('/notes', (req, resp) => {
-    res.send(path.join(__dirname + '/public/notes.html'))
-})
 
-app.get('/', (req, resp) => {
-    res.send(path.join(__dirname + '/index.html'))
-})
-// app.use(express.urlencoded({ extended: true}))
-// app.use(express.json())
+
+
+// app.get('/api/notes', (req, res) => {
+//     res.sendFile
+// })
 
 
 
